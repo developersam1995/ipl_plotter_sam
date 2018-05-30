@@ -11,17 +11,16 @@ function getMatchPerSeason(startSeason, endSeason, ModelMatch, callback) {
 function getWonPerSeason(startSeason, endSeason, ModelMatch, callback) {
     let wonPerSeason = {};
     for(let i = startSeason; i < endSeason; i++){
-       
-    }
-    function updateWonPerSeason(winner, season){
-      
+       wonPerSeason[i] = {};
     }
     ModelMatch.find({}, function (err, matches) {
         let len = matches.length;
         for(let i = 0; i < len; i++){
             let winner = matches[i].winner;
             let season = matches[i].season;
-            updateWonPerSeason(winner, season);
+            if(wonPerSeason[season][winner] == undefined) 
+                wonPerSeason[season][winner] = 0;
+            wonPerSeason[season][winner]++;
             if(i==(len-1)) callback(wonPerSeason);
         }
     });

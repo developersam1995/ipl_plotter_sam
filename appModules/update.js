@@ -29,10 +29,9 @@ function update() {
     createJsonFile(mps, 'matchPerSeason');
   });
 
-//   calculator.getWonPerSeason(startSeason, endSeason, ModelMatch, (wps) => {
-//     console.log(wps);
-//   });
-
+  calculator.getWonPerSeason(startSeason, endSeason, ModelMatch, (wps) => {
+    createJsonFile(wps, 'matchPerSeason');
+  });
   
 }
 
