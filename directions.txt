@@ -9,8 +9,8 @@ Plot with highcharts
 
 Generate the following plots ...
 
-  Plot the number of matches played per season of all the years in IPL.
-  Plot a stacked bar chart of matches won of all teams over all the years of IPL.
+  Plot the number of matches played per season of all the seasons in IPL.
+  Plot a stacked bar chart of matches won of all teams over all the seasons of IPL.
   For the year 2016 plot the extra runs conceded per team.
   For the year 2015 plot the top economical bowlers.
   Discuss a "Story" you want to tell with the given data. As with part 1, prepare the JSON file and plot with highcharts.

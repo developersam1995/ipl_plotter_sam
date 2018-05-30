@@ -25,9 +25,13 @@ function update() {
     console.log('Mongo active');
   });
 
-  calculator.getMatchPerSeason(startSeason, endSeason, ModelMatch,(mps)=>{
+  calculator.getMatchPerSeason(startSeason, endSeason, ModelMatch, (mps) => {
     createJsonFile(mps, 'matchPerSeason');
   });
+
+//   calculator.getWonPerSeason(startSeason, endSeason, ModelMatch, (wps) => {
+//     console.log(wps);
+//   });
 
   
 }
