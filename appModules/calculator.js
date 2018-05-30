@@ -26,5 +26,10 @@ function getWonPerSeason(startSeason, endSeason, ModelMatch, callback) {
     });
 }
 
+function getExtraPerTeam(season,ModelMatch, ModelDeleveries) {
+
+}
+
 module.exports.getMatchPerSeason = getMatchPerSeason;
 module.exports.getWonPerSeason = getWonPerSeason;
+module.exports.getExtraPerTeam = getExtraPerTeam;

@@ -1,3 +1,15 @@
-const update = require('./appModules/update');
+const express = require('express');
+const updateData = require('./appModules/updateData');
 
-update();
+const app = express();
+
+app.use(express.static('./public'));
+
+app.get('/plotter', (req, res) => {
+    res.sendfile('./index.html')
+});
+
+app.listen(3000);
+console.log('listening at 3000');
+
+// updateDate();
