@@ -30,7 +30,7 @@ function update() {
   });
 
   calculator.getWonPerSeason(startSeason, endSeason, ModelMatch, (wps) => {
-    createJsonFile(wps, 'matchPerSeason');
+    createJsonFile(wps, 'wonPerSeason');
   });
   
 }
