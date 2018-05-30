@@ -1,5 +1,5 @@
 function getMatchPerSeason(startSeason, endSeason, ModelMatch, callback) {
-    let getMatchPerSeason = [];
+    let matchPerSeason = [];
     for(let i = startSeason; i < endSeason; i++){
         ModelMatch.count({season: i}, (err, count)=>{
             let modelObj = {season: i, matches: count};
