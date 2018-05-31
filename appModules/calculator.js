@@ -55,9 +55,53 @@ function getExtraPerTeam(season, ModelMatch, ModelDeliveries,callback) {
            ModelDeliveries.find({match_id: matchIds[i]},updateExtraPerTeam);
        }
     });
-    setTimeout(()=>{console.log(extraPerTeam)},10000);
+}
+
+function getEconomicalBowler(season, ModelMatch, ModelDeliveries, callback)  {
+    let econBowler = {};
+    let matchIds = [];
+    let matchesRemaining;
+    let deliveriesRemaining;
+    function updateEconBowler(err, deliveries) {
+        let numberDeliveries = deliveries.length;
+        deliveriesRemaining = numberDeliveries;
+        matchesRemaining--;
+        for(let j=0; j<numberDeliveries; j++) {
+            let bowler = deliveries[j].bowler;
+            let totalRuns = deliveries[j].total_runs;
+            let wideRuns = deliveries[j].wide_runs;
+            let noballRuns = deliveries[j].noball_runs;
+            if(econBowler[bowler]==undefined)
+              econBowler[bowler] = {runsConceded : 0, ballsBowled : 0};
+            econBowler[bowler].runsConceded = econBowler[bowler].runsConceded + totalRuns;
+            if(!wideRuns && !noballRuns)
+              econBowler[bowler].ballsBowled++;
+           deliveriesRemaining--;
+           if(!matchesRemaining && !deliveriesRemaining) calcEconBowler();
+        }
+    }
+    ModelMatch.find({season: season}, (err, matches) => {
+        let totalMatches = matches.length;
+        matchesRemaining = totalMatches;
+        for(let i=0; i<totalMatches; i++){
+            matchIds.push(matches[i].id);
+        }
+        for(let i=0; i<totalMatches; i++){
+            ModelDeliveries.find({match_id: matchIds[i]},updateEconBowler);
+        }
+    });
+    function calcEconBowler() {
+        let bowlers = Object.keys(econBowler);
+        bowlers.forEach((bowler)=>{
+            let oversBowled = (econBowler[bowler].ballsBowled)/6;
+            let economy = (econBowler[bowler].runsConceded)/oversBowled;
+            econBowler[bowler] = economy;
+        });
+        callback(econBowler);
+    }
 }
 
 module.exports.getMatchPerSeason = getMatchPerSeason;
 module.exports.getWonPerSeason = getWonPerSeason;
 module.exports.getExtraPerTeam = getExtraPerTeam;
+module.exports.getEconomicalBowler = getEconomicalBowler;

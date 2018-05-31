@@ -34,9 +34,15 @@ function update() {
   // });
 
   calculator.getExtraPerTeam(2016, ModelMatch, ModelDeliveries, (ept) => {
-     createJsonFile(ept, 'extrasPerTeam');
+     createJsonFile(ept, 'extrasPerTeam-2016');
   });
+
+  calculator.getEconomicalBowler(2015, ModelMatch, ModelDeliveries, (eb)=>{
+    createJsonFile(eb, 'economyOfBowlers-2015')
+  })
   
 }
+
+// update();
 
 module.exports = update;
