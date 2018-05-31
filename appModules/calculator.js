@@ -26,8 +26,29 @@ function getWonPerSeason(startSeason, endSeason, ModelMatch, callback) {
     });
 }
 
-function getExtraPerTeam(season,ModelMatch, ModelDeleveries) {
-
+function getExtraPerTeam(season, ModelMatch, ModelDeliveries,callback) {
+    let extraPerTeam = {};
+    let matchIds = [];
+    function updateExtraPerTeam(err, deliveries) {
+        let numberDeliveries = deliveries.length;
+        for(let j=0; j<numberDeliveries; j++) {
+           let bowlingTeam = deliveries[j].bowling_team;
+           if(extraPerTeam[bowlingTeam]==undefined)
+            extraPerTeam[bowlingTeam] = 0;
+           let extraRuns = deliveries[j].extra_runs;
+           extraPerTeam[bowlingTeam] = extraPerTeam[bowlingTeam]+extraRuns;
+        }
+    }
+    ModelMatch.find({season: season}, (err, matches) => {
+       let totalMatches = matches.length;
+       for(let i=0; i<totalMatches; i++){
+           matchIds.push(matches[i].id);
+       }
+       for(let i=0; i<totalMatches; i++){
+           ModelDeliveries.find({match_id: matchIds[i]},updateExtraPerTeam);
+       }
+    });
+    setTimeout(()=>{console.log(extraPerTeam)},10000);
 }
 
 module.exports.getMatchPerSeason = getMatchPerSeason;

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const DeleveriesSchema = new mongoose.Schema({
+const DeliveriesSchema = new mongoose.Schema({
   match_id: Number,
   inning: Number,
   batting_team: String,
@@ -47,5 +47,5 @@ const MatchSchema = new mongoose.Schema({
 
 
 
-module.exports.ModelDeleveries = mongoose.model('deleveries', DeleveriesSchema);
+module.exports.ModelDeliveries = mongoose.model('deliveries', DeliveriesSchema);
 module.exports.ModelMatch = mongoose.model('matches', MatchSchema);

@@ -4,7 +4,7 @@ function update() {
   const model = require('./model');
   const calculator = require('./calculator');
 
-  const ModelDeleveries = model.ModelDeleveries;
+  const ModelDeliveries = model.ModelDeliveries;
   const ModelMatch = model.ModelMatch;
   const startSeason = 2008;
   const endSeason = (new Date()).getFullYear();
@@ -25,14 +25,19 @@ function update() {
     console.log('Mongo active');
   });
 
-  calculator.getMatchPerSeason(startSeason, endSeason, ModelMatch, (mps) => {
-    createJsonFile(mps, 'matchPerSeason');
-  });
+  // calculator.getMatchPerSeason(startSeason, endSeason, ModelMatch, (mps) => {
+  //   createJsonFile(mps, 'matchPerSeason');
+  // });
 
-  calculator.getWonPerSeason(startSeason, endSeason, ModelMatch, (wps) => {
-    createJsonFile(wps, 'wonPerSeason');
+  // calculator.getWonPerSeason(startSeason, endSeason, ModelMatch, (wps) => {
+  //   createJsonFile(wps, 'wonPerSeason');
+  // });
+
+  calculator.getExtraPerTeam(2016, ModelMatch, ModelDeliveries, (ept) => {
+    console.log(ept);
   });
   
 }
+update();
 
 module.exports = update;
