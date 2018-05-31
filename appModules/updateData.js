@@ -25,13 +25,13 @@ function update() {
     console.log('Mongo active');
   });
 
-  // calculator.getMatchPerSeason(startSeason, endSeason, ModelMatch, (mps) => {
-  //   createJsonFile(mps, 'matchPerSeason');
-  // });
+  calculator.getMatchPerSeason(startSeason, endSeason, ModelMatch, (mps) => {
+    createJsonFile(mps, 'matchPerSeason');
+  });
 
-  // calculator.getWonPerSeason(startSeason, endSeason, ModelMatch, (wps) => {
-  //   createJsonFile(wps, 'wonPerSeason');
-  // });
+  calculator.getWonPerSeason(startSeason, endSeason, ModelMatch, (wps) => {
+    createJsonFile(wps, 'wonPerSeason');
+  });
 
   calculator.getExtraPerTeam(2016, ModelMatch, ModelDeliveries, (ept) => {
      createJsonFile(ept, 'extrasPerTeam-2016');
