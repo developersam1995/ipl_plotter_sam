@@ -34,10 +34,9 @@ function update() {
   // });
 
   calculator.getExtraPerTeam(2016, ModelMatch, ModelDeliveries, (ept) => {
-    console.log(ept);
+     createJsonFile(ept, 'extrasPerTeam');
   });
   
 }
-update();
 
 module.exports = update;

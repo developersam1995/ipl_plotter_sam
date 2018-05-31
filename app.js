@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const app = express();
 
-// updateData();
+updateData();
 
 app.use(express.static('./public'));
 
